@@ -5,9 +5,10 @@ editor: visual
 ---
 
 ## Step 1: Reading and Preparing Data
+
 ```{r}
 library(data.table)
-# Reading CSV files
+
 ita <- fread("indicators_ita.csv")
 chn <- fread("indicators_chn.csv")
 irl <- fread("indicators_irl.csv")
@@ -22,7 +23,9 @@ clean_year(ita)
 clean_year(chn)
 clean_year(irl)
 ```
+
 ## Step 2: Merging Datasets
+
 ```{r}
 # Adding country identifier
 ita[, Country := "Italy"]
@@ -32,11 +35,15 @@ irl[, Country := "Ireland"]
 # Combine datasets
 all_data <- rbindlist(list(ita, chn, irl))
 ```
+
 ## Step 3: Quick Data Exploration
+
 ```{r}
 summary(all_data)
 ```
+
 ## Step 4: Analysis with data.table
+
 ```{r}
 # Inspect the first few rows of the data
 head(all_data)
@@ -61,7 +68,9 @@ fertilizer_trends <- all_data[`Indicator Code` == "AG.CON.FERT.PT.ZS" & !is.na(V
 # View the result
 head(fertilizer_trends)
 ```
+
 ## Step 5: Visualization
+
 ```{r}
 library(ggplot2)
 ggplot(fertilizer_trends, aes(x=Year, y=Avg_Value, color=Country)) +
