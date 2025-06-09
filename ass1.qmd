@@ -65,8 +65,7 @@ fertilizer_trends <- all_data[`Indicator Code` == "AG.CON.FERT.PT.ZS" & !is.na(V
                               .(Avg_Value = mean(Value, na.rm=TRUE)),
                               by = .(Country, Year)]
 
-# View the result
-head(fertilizer_trends)
+
 ```
 
 ## Step 5: Visualization
